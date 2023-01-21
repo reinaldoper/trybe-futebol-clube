@@ -19,8 +19,11 @@ const createUser = async (req: Request, res: Response) => {
       .json({ message: 'All fields must be filled' });
   }
   const user = await serviceUser.getUserByEmail(email);
+  if (!user || !user.password) {
+    return res.status(statusCodes.unautorizad).json({ message: 'Incorrect email or password' });
+  }
   if (!bcrypt.compareSync(password, user.password)) {
-    return res.status(statusCodes.notFound).json({ message: 'Invalid password' });
+    return res.status(statusCodes.unautorizad).json({ message: 'Incorrect email or password' });
   }
   const token = jwt.sign({ id: user.id, email }, secret as string, { expiresIn: '2d' });
 
