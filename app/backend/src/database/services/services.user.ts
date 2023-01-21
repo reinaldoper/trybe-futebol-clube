@@ -10,4 +10,11 @@ const getUserByEmail = async (email: string): Promise<Tuser> => {
     password: user?.dataValues.password };
 };
 
-export default { getUserByEmail };
+const getUserById = async (id: number): Promise<Tuser> => {
+  const user = await Users.findByPk(id, {
+    attributes: { exclude: ['password'] },
+  });
+  return user as unknown as Tuser;
+};
+
+export default { getUserByEmail, getUserById };
