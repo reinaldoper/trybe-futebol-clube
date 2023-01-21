@@ -11,17 +11,16 @@ const secret = process.env.JWTSECRET || 'seusecretdetoken';
 const createUser = async (req: Request, res: Response) => {
   const { email, password } = req.body;
   const user = await serviceUser.getUserByEmail(email);
-  const myToken = jwt.sign({ id: user.id, email }, secret as string, { expiresIn: '2d' });
   if (!user || !user.id) {
-    return res.status(401).json({
+    return res.status(statusCodes.unautorizad).json({
       message: 'Incorrect email or password',
     });
   }
   if (!bcrypt.compareSync(password, user.password)) {
     return res.status(statusCodes.unautorizad).json({ message: 'Incorrect email or password' });
   }
-
-  res.status(statusCodes.ok).json({ token: myToken });
+  const myToken = jwt.sign({ id: user.id, email }, secret as string, { expiresIn: '2d' });
+  return res.status(statusCodes.ok).json({ token: myToken });
 };
 
 const validate = async (req: Request, res: Response) => {
