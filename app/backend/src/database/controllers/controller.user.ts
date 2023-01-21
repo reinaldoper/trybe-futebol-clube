@@ -27,7 +27,7 @@ const createUser = async (req: Request, res: Response) => {
   }
   const myToken = jwt.sign({ id: user.id, email }, secret as string, { expiresIn: '2d' });
 
-  res.status(statusCodes.ok).json({ token: myToken });
+  return res.status(statusCodes.ok).json({ token: myToken });
 };
 
 export default { createUser };
