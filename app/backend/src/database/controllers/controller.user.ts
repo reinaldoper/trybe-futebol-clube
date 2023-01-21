@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import jwt = require('jsonwebtoken');
+import * as jwt from 'jsonwebtoken';
 import * as bcrypt from 'bcryptjs';
 import serviceUser from '../services/services.user';
 import statusCodes from '../statusCodes';
