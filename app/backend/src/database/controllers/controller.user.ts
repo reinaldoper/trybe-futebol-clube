@@ -6,7 +6,7 @@ import statusCodes from '../statusCodes';
 
 require('dotenv/config');
 
-const secret = process.env.JWTSECRET || 'seusecretdetoken';
+const secret = process.env.JWT_SECRET || 'seusecretdetoken';
 
 const createUser = async (req: Request, res: Response) => {
   const { email, password } = req.body;
