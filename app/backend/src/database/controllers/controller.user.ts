@@ -19,7 +19,7 @@ const createUser = async (req: Request, res: Response) => {
   if (!bcrypt.compareSync(password, user.password)) {
     return res.status(statusCodes.unautorizad).json({ message: 'Incorrect email or password' });
   }
-  const myToken = jwt.sign({ id: user.id, email }, secret as string, { expiresIn: '2d' });
+  const myToken = jwt.sign({ id: user.id, email }, secret as string, { expiresIn: '4d' });
   return res.status(statusCodes.ok).json({ token: myToken });
 };
 
