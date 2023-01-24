@@ -12,4 +12,5 @@ const getTeamId = async (req: Request, res: Response) => {
   const teamId = await servicesTeams.getTeamId(Number(id));
   return res.status(statusCodes.ok).json(teamId);
 };
+
 export default { getAllTeams, getTeamId };

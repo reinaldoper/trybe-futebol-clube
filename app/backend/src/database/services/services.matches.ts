@@ -10,4 +10,11 @@ const getAllMatches = async (): Promise<Tmaches[]> => {
   return exchanges;
 };
 
-export default { getAllMatches };
+const queryMatches = async (inProgress: boolean): Promise<Tmaches[]> => {
+  const matches = Match.findAll({
+    where: { inProgress },
+  });
+  return matches as unknown as Tmaches[];
+};
+
+export default { getAllMatches, queryMatches };

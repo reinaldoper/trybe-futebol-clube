@@ -3,8 +3,14 @@ import statusCodes from '../statusCodes';
 import getAllMatches from '../services/services.matches';
 
 const getMatchs = async (req: Request, res: Response) => {
-  /* const { id } = req.body.user; */
-  const matches = await getAllMatches.getAllMatches();
+  let matches;
+  if (req.query.inProgress) {
+    const { inProgress } = req.query;
+    const progress = (inProgress === 'true');
+    matches = await getAllMatches.queryMatches(progress);
+  } else {
+    matches = await getAllMatches.getAllMatches();
+  }
   return res.status(statusCodes.ok).json(matches);
 };
 
