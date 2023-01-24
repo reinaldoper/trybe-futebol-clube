@@ -1,5 +1,6 @@
 import * as express from 'express';
 import routerUser from './database/routes/routers.user';
+import routerMatches from './database/routes/router.matches';
 
 class App {
   public app: express.Express;
@@ -11,6 +12,7 @@ class App {
 
     // Não remover essa rota
     this.routes();
+    this.matches();
     this.app.get('/', (req, res) => res.json({ ok: true }));
   }
 
@@ -28,6 +30,10 @@ class App {
 
   private routes(): void {
     this.app.use(routerUser);
+  }
+
+  private matches(): void {
+    this.app.use(routerMatches);
   }
 
   public start(PORT: string | number):void {
