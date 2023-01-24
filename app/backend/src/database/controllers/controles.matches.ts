@@ -14,4 +14,10 @@ const getMatchs = async (req: Request, res: Response) => {
   return res.status(statusCodes.ok).json(matches);
 };
 
-export default { getMatchs };
+const createMatches = async (req: Request, res: Response) => {
+  const resultMatches = await getAllMatches.createMatches(req.body);
+  const newMatche = await getAllMatches.getMathesId(Number(resultMatches));
+  return res.status(statusCodes.created).json(newMatche);
+};
+
+export default { getMatchs, createMatches };
