@@ -12,7 +12,7 @@ const getAllMatches = async (): Promise<Tmaches[]> => {
 
 const queryMatches = async (inProgress: boolean): Promise<Tmaches[]> => {
   console.log(inProgress);
-  const matches = Match.findAll({
+  const matches = await Match.findAll({
     where: { inProgress },
     include: [{ model: Teams, as: 'homeTeam', attributes: { exclude: ['id'] } },
       { model: Teams, as: 'awayTeam', attributes: { exclude: ['id'] } }],
@@ -29,7 +29,7 @@ const createMatches = async (body: Tmaches): Promise<Tmaches[] | number> => {
   return matches.id as unknown as Tmaches[];
 };
 
-const getMathesId = async (id: number): Promise<Tmaches[] | number> => {
+const getMathesId = async (id: number): Promise<Tmaches> => {
   const matches = await Match.findByPk(id, {
     attributes: { include: ['id',
       'homeTeamId',
@@ -39,7 +39,7 @@ const getMathesId = async (id: number): Promise<Tmaches[] | number> => {
       'inProgress',
     ] },
   });
-  return matches as unknown as Tmaches[];
+  return matches?.dataValues as unknown as Tmaches;
 };
 
 const finish = async (id: number): Promise<Tmaches[]> => {
@@ -49,4 +49,9 @@ const finish = async (id: number): Promise<Tmaches[]> => {
   );
   return upDate as unknown as Tmaches[];
 };
-export default { getAllMatches, queryMatches, createMatches, getMathesId, finish };
+export default { getAllMatches,
+  queryMatches,
+  createMatches,
+  getMathesId,
+  finish,
+};

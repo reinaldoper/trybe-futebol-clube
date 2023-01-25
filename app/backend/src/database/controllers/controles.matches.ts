@@ -1,6 +1,8 @@
 import { Request, Response } from 'express';
 import statusCodes from '../statusCodes';
 import getAllMatches from '../services/services.matches';
+import validateTeam from '../middleware/validateTeam';
+/* import validateMatches from '../middleware/validate.matches'; */
 
 const getMatchs = async (req: Request, res: Response) => {
   let matches;
@@ -16,8 +18,17 @@ const getMatchs = async (req: Request, res: Response) => {
 
 const createMatches = async (req: Request, res: Response) => {
   const resultMatches = await getAllMatches.createMatches(req.body);
-  const newMatche = await getAllMatches.getMathesId(Number(resultMatches));
-  return res.status(statusCodes.created).json(newMatche);
+  const dataValues = await getAllMatches.getMathesId(Number(resultMatches));
+  const { homeTeamId, awayTeamId } = dataValues;
+  if (awayTeamId === homeTeamId) {
+    return res.status(422)
+      .json({ message: 'It is not possible to create a match with two equal teams' });
+  }
+  const result = await validateTeam(homeTeamId, awayTeamId);
+  if (result === undefined) {
+    return res.status(statusCodes.notFound).json({ message: 'There is no team with such id!' });
+  }
+  return res.status(statusCodes.created).json(dataValues);
 };
 
 const finishMatche = async (req: Request, res: Response) => {

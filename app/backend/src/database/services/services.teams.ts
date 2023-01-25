@@ -11,10 +11,11 @@ const getAllTeams = async (): Promise<TTimes[]> => {
   return teams;
 };
 
-const getTeamId = async (id: number): Promise<TTimes[]> => {
+const getTeamId = async (id: number): Promise<TTimes> => {
   const team = await Teams.findByPk(id, {
     attributes: { include: ['id', 'teamName'] },
   });
-  return team as unknown as TTimes[];
+  return team as unknown as TTimes;
 };
+
 export default { getAllTeams, getTeamId };
