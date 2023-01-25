@@ -1,51 +1,59 @@
 import * as chai from 'chai';
 import { Response } from 'superagent';
-import { data } from './mockes.json/matches.json';
-import { dataFalse } from './mockes.json/matches.false.json';
-import { dataTrue } from './mockes.json/matches.true.json';
+import { data } from './mockes.matches.json/matches.json';
+import { dataFalse } from './mockes.matches.json/matches.false.json';
+import { dataTrue } from './mockes.matches.json/matches.true.json';
+// @ts-ignore
+import Match from '../database/models/matches.model';
+import { App } from '../app';
+import * as sinon from 'sinon';
 // @ts-ignore
 import chaiHttp = require('chai-http');
 chai.use(chaiHttp);
 
 const { expect } = chai;
-const app = require('../app');
+const { app } = new App();
+let responseHttp: Response;
 
 describe('Definir o retorno das matches', () => {
   let chaiHttpResponse: Response;
   describe('Retorna matches', () => {
 
     it('Matches', async () => {
-      chaiHttpResponse = await chai
+      sinon.stub(Match, 'findAll').resolves(data as unknown as Match[]);
+
+      responseHttp = await chai
       .request(app)
       .get('/matches')
-      .send(data);
-
-      const date = chaiHttpResponse.body;
-
-      expect(chaiHttpResponse.status).to.be.equal(200);
-      expect(date.data[0]).to.be.equal(data[0]);    
+  
+      const { status, body } = responseHttp;
+  
+      expect(status).to.be.equal(200);
+      expect(body).to.deep.equal(data);   
     });
     it('Matches inProgress = "false" ', async () => {
-      chaiHttpResponse = await chai
+      sinon.stub(Match, 'findAll').resolves(data as unknown as Match[]);
+
+      responseHttp = await chai
       .request(app)
       .get('/matches?inProgress=false')
-      .send(dataFalse);
-
-      const date = chaiHttpResponse.body;
-
-      expect(chaiHttpResponse.status).to.be.equal(200);
-      expect(date.dataFalse).to.be.equal(dataFalse);    
+  
+      const { status, body } = responseHttp;
+  
+      expect(status).to.be.equal(200);
+      expect(body).to.deep.equal(dataFalse);     
     });
     it('Matches inProgress = "true" ', async () => {
-      chaiHttpResponse = await chai
+      sinon.stub(Match, 'findAll').resolves(data as unknown as Match[]);
+
+      responseHttp = await chai
       .request(app)
       .get('/matches?inProgress=true')
-      .send(dataTrue);
-
-      const date = chaiHttpResponse.body;
-
-      expect(chaiHttpResponse.status).to.be.equal(200);
-      expect(date.dataTrue).to.be.equal(dataTrue);    
+  
+      const { status, body } = responseHttp;
+  
+      expect(status).to.be.equal(200);
+      expect(body).to.deep.equal(dataTrue);     
     });
 
   });

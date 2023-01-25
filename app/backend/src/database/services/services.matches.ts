@@ -14,6 +14,8 @@ const queryMatches = async (inProgress: boolean): Promise<Tmaches[]> => {
   console.log(inProgress);
   const matches = Match.findAll({
     where: { inProgress },
+    include: [{ model: Teams, as: 'homeTeam', attributes: { exclude: ['id'] } },
+      { model: Teams, as: 'awayTeam', attributes: { exclude: ['id'] } }],
   });
   return matches as unknown as Tmaches[];
 };
