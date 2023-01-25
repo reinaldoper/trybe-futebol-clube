@@ -20,4 +20,11 @@ const createMatches = async (req: Request, res: Response) => {
   return res.status(statusCodes.created).json(newMatche);
 };
 
-export default { getMatchs, createMatches };
+const finishMatche = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const result = await getAllMatches.finish(Number(id));
+  if (result) return res.status(statusCodes.ok).json({ message: 'Finished' });
+  res.status(statusCodes.error).json({ message: 'Not finished' });
+};
+
+export default { getMatchs, createMatches, finishMatche };

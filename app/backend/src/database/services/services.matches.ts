@@ -41,4 +41,12 @@ const getMathesId = async (id: number): Promise<Tmaches[] | number> => {
   });
   return matches as unknown as Tmaches[];
 };
-export default { getAllMatches, queryMatches, createMatches, getMathesId };
+
+const finish = async (id: number): Promise<Tmaches[]> => {
+  const [upDate] = await Match.update(
+    { inProgress: false },
+    { where: { id } },
+  );
+  return upDate as unknown as Tmaches[];
+};
+export default { getAllMatches, queryMatches, createMatches, getMathesId, finish };

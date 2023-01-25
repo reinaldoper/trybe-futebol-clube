@@ -12,7 +12,7 @@ const validateToken = (req: Request, res: Response, next: NextFunction) => {
     req.body.user = user;
     next();
   } catch (e) {
-    return res.status(statusCodes.unautorizad).json({ message: 'Expired or invalid token' });
+    return res.status(statusCodes.unautorizad).json({ message: 'Token must be a valid token' });
   }
 };
 
