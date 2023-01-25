@@ -1,3 +1,4 @@
+/* import { Where } from 'sequelize/types/utils'; */
 import Teams from '../models/team.model';
 import Match from '../models/matches.model';
 import Tmaches from '../Tmatches/Tmatches';
@@ -29,6 +30,15 @@ const createMatches = async (body: Tmaches): Promise<Tmaches[] | number> => {
   return matches.id as unknown as Tmaches[];
 };
 
+const createMatchesId = async (body: Tmaches, id: number): Promise<Tmaches[] | number> => {
+  const { homeTeamGoals, awayTeamGoals } = body;
+  const matches = await Match.update(
+    { homeTeamGoals, awayTeamGoals },
+    { where: { id } },
+  );
+  return matches as unknown as Tmaches[];
+};
+
 const getMathesId = async (id: number): Promise<Tmaches> => {
   const matches = await Match.findByPk(id, {
     attributes: { include: ['id',
@@ -54,4 +64,5 @@ export default { getAllMatches,
   createMatches,
   getMathesId,
   finish,
+  createMatchesId,
 };

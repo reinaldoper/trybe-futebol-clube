@@ -43,4 +43,14 @@ const finishMatche = async (req: Request, res: Response) => {
   res.status(statusCodes.error).json({ message: 'Not finished' });
 };
 
-export default { getMatchs, createMatches, finishMatche };
+const createMatchesId = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const dataValues = await getAllMatches.getMathesId(Number(id));
+  if (dataValues.inProgress) {
+    await getAllMatches.createMatchesId(req.body, Number(id));
+    return res.status(statusCodes.ok).json(req.body);
+  }
+  return res.status(statusCodes.notFound).json({ message: 'Not inProgress' });
+};
+
+export default { getMatchs, createMatches, finishMatche, createMatchesId };
