@@ -12,10 +12,10 @@ const getAllTeams = async (): Promise<TTimes[]> => {
 };
 
 const getTeamId = async (id: number): Promise<TTimes> => {
-  const team = await Teams.findByPk(id, {
-    attributes: { include: ['id', 'teamName'] },
+  const team = await Teams.findOne({
+    where: { id },
   });
-  return team as unknown as TTimes;
+  return { id: team?.dataValues.id, teamName: team?.dataValues.teamName };
 };
 
 export default { getAllTeams, getTeamId };

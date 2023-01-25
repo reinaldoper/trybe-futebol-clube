@@ -1,8 +1,9 @@
 import { Request, Response } from 'express';
 import statusCodes from '../statusCodes';
 import getAllMatches from '../services/services.matches';
-import validateTeam from '../middleware/validateTeam';
+/* import validateTeam from '../middleware/validateTeam'; */
 /* import validateMatches from '../middleware/validate.matches'; */
+import servicesTeams from '../services/services.teams';
 
 const getMatchs = async (req: Request, res: Response) => {
   let matches;
@@ -17,16 +18,20 @@ const getMatchs = async (req: Request, res: Response) => {
 };
 
 const createMatches = async (req: Request, res: Response) => {
+  const { homeTeamId, awayTeamId } = req.body;
+  const user = await servicesTeams.getTeamId(homeTeamId);
+  if (!user || !user.id) {
+    return res.status(statusCodes.notFound).json({ message: 'There is no team with such id!' });
+  }
+  const user1 = await servicesTeams.getTeamId(awayTeamId);
+  if (!user1 || !user1.id) {
+    return res.status(statusCodes.notFound).json({ message: 'There is no team with such id!' });
+  }
   const resultMatches = await getAllMatches.createMatches(req.body);
   const dataValues = await getAllMatches.getMathesId(Number(resultMatches));
-  const { homeTeamId, awayTeamId } = dataValues;
-  if (awayTeamId === homeTeamId) {
+  if (dataValues.homeTeamId === dataValues.awayTeamId) {
     return res.status(422)
       .json({ message: 'It is not possible to create a match with two equal teams' });
-  }
-  const result = await validateTeam(homeTeamId, awayTeamId);
-  if (result === undefined) {
-    return res.status(statusCodes.notFound).json({ message: 'There is no team with such id!' });
   }
   return res.status(statusCodes.created).json(dataValues);
 };
