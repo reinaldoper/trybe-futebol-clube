@@ -61,6 +61,7 @@ const gerate = (array: Tsort[]): Classification[] => {
     }
     iniciaObj = totale(arr, iniciaObj);
   });
+  ar.push(iniciaObj);
   return ar as unknown as Classification[];
 };
 
