@@ -2,6 +2,7 @@ import * as express from 'express';
 import routerUser from './database/routes/routers.user';
 import routerMatches from './database/routes/router.matches';
 import routerTeams from './database/routes/router.teams';
+import routerLeaderboard from './database/routes/router.leards';
 
 class App {
   public app: express.Express;
@@ -34,6 +35,7 @@ class App {
     this.app.use(routerUser);
     this.app.use(routerMatches);
     this.app.use(routerTeams);
+    this.app.use(routerLeaderboard);
   }
 
   /* private matches(): void {

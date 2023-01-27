@@ -8,7 +8,7 @@ const getAllMatches = async (): Promise<Tmaches[]> => {
     include: [{ model: Teams, as: 'homeTeam', attributes: { exclude: ['id'] } },
       { model: Teams, as: 'awayTeam', attributes: { exclude: ['id'] } }],
   });
-  return exchanges;
+  return exchanges as unknown as Tmaches[];
 };
 
 const queryMatches = async (inProgress: boolean): Promise<Tmaches[]> => {
@@ -19,6 +19,16 @@ const queryMatches = async (inProgress: boolean): Promise<Tmaches[]> => {
       { model: Teams, as: 'awayTeam', attributes: { exclude: ['id'] } }],
   });
   return matches as unknown as Tmaches[];
+};
+
+const getMatchesFalse = async (inProgress: boolean): Promise<Tmaches[]> => {
+  const matchesLeaderboard = await Match.findAll({
+    where: { inProgress },
+    include: [{ model: Teams, as: 'homeTeam', attributes: { exclude: ['id'] } },
+      { model: Teams, as: 'awayTeam', attributes: { exclude: ['id'] } }],
+  });
+  const r = matchesLeaderboard.map((i) => i.dataValues);
+  return r as unknown as Tmaches[];
 };
 
 const createMatches = async (body: Tmaches): Promise<Tmaches[] | number> => {
@@ -65,4 +75,5 @@ export default { getAllMatches,
   getMathesId,
   finish,
   createMatchesId,
+  getMatchesFalse,
 };
