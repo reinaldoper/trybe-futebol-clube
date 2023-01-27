@@ -11,8 +11,8 @@ export default interface Tmaches {
   awayTeamGoals: number;
   inProgress?: boolean;
   homeTeam: homeTeam;
-  awayTeam?: homeTeam;
-  teamName?: string;
+  awayTeam: homeTeam;
+  teamName: string;
 }
 
 /* export default interface TTimes extends Tmaches {
