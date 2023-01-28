@@ -8,5 +8,5 @@ export interface Classification {
   goalsFavor: number;
   goalsOwn: number;
   goalsBalance: number;
-  efficiency?: number;
+  efficiency: number;
 }
