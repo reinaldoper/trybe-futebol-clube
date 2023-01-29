@@ -1,6 +1,9 @@
 {
-  "homeTeamId": 40, 
-  "awayTeamId": 8,
-  "homeTeamGoals": 2,
-  "awayTeamGoals": 2
+  "matchesNot":
+  {
+    "homeTeamId": 40, 
+    "awayTeamId": 8,
+    "homeTeamGoals": 2,
+    "awayTeamGoals": 2
+  }
 }
