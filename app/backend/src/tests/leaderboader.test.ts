@@ -18,7 +18,7 @@ let responseHttp: Response;
 describe('Retorno das leaderboard', () => {
   describe('Retorna leaderboard final', () => {
 
-    it('Matches', async () => {
+    it('Tests leaderboard', async () => {
 
       responseHttp = await chai
       .request(app)

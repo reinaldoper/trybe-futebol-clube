@@ -39,8 +39,10 @@ const createMatches = async (req: Request, res: Response) => {
 const finishMatche = async (req: Request, res: Response) => {
   const { id } = req.params;
   const result = await getAllMatches.finish(Number(id));
-  if (result) return res.status(statusCodes.ok).json({ message: 'Finished' });
-  res.status(statusCodes.error).json({ message: 'Not finished' });
+  if (result) {
+    return res.status(statusCodes.ok).json({ message: 'Finished' });
+  }
+  return res.status(statusCodes.error).json({ message: 'Not finished' });
 };
 
 const createMatchesId = async (req: Request, res: Response) => {

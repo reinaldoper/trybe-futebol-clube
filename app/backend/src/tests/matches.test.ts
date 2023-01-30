@@ -119,6 +119,17 @@ describe('Definir o retorno das matches', () => {
       expect(status).to.be.equal(422);
       expect(body).to.deep.equal({ message: 'It is not possible to create a match with two equal teams' });     
     });
+    it('Alterar o status inProgress de uma partida para false no banco de dados sem sucesso', async () => {
+
+      httpResponse = await chai
+      .request(app)
+      .patch('/matches/1/finish')
+      
+      const { status, body } = httpResponse;      
+      
+      expect(status).to.be.equal(500);
+      expect(body).to.deep.equal({ message: 'Not finished' });     
+    });
 
   });
 });
