@@ -7,18 +7,16 @@ const { expect } = chai;
 import { App } from '../app';
 const { app } = new App();
 describe('Definir o teste da rota de login', () => {
-  let httpResponse: Response;
-  let Token: string;  
-  describe('Retorna true', () => {
-    it('true', async () => {
+  let httpResponse: Response; 
+  describe('Retorna true com o token válido', () => {
+    it('true com o token', async () => {
       httpResponse = await chai
       .request(app)
       .post('/login')
       .send({ email: 'admin@admin.com', password: 'secret_admin' });
-      const { user, token } = httpResponse.body;
-      Token = token;
+      const { token } = httpResponse.body;
       expect(httpResponse.status).to.be.equal(200);
-     /*  expect(user.username).to.be.equal('Admin');  */   
+      expect(token).to.be.equal(token);    
     });
     it('Nenhum email informado no corpo da requisição', async () => {
       httpResponse = await chai
@@ -53,6 +51,21 @@ describe('Definir o teste da rota de login', () => {
 
       expect(httpResponse.status).to.be.equal(401);
       expect(message).to.be.equal('Incorrect email or password');    
+    });
+    it('true com rota validate', async () => {
+      httpResponse = await chai
+      .request(app)
+      .post('/login')
+      .send({ email: 'admin@admin.com', password: 'secret_admin' });
+      const { token } = httpResponse.body;   
+
+      httpResponse = await chai
+      .request(app)
+      .get('/login/validate')
+      .set({ authorization: token });
+      const { body } = httpResponse;
+      expect(httpResponse.status).to.be.equal(200);
+      expect(body.role).to.be.equal('admin');
     });
 
   });
