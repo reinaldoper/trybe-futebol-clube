@@ -12,7 +12,7 @@ Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua cr
 - quais arquivos/pastas foram desenvolvidos pela Trybe.
 -->
 ## Projeto Trybe futebol clube
-- `Projeto do módulo de back-end, onde a Trybe disponibiliza o Front-end já pronto, bastando ao estudante desenvolver apenas o back-end`
+- `Projeto do módulo de back-end, onde a Trybe disponibiliza o Front-end e o docker compose já pronto, bastando ao estudante desenvolver apenas o back-end`
 ## Para rodar a aplicação:
 - `git clone git@github.com:reinaldoper/trybe-futebol-clube.git`
 ## Baixar as dependências:
