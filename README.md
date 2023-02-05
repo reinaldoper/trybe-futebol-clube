@@ -20,7 +20,7 @@ Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua cr
 - `npm install`
 - Dentro da pasta `app`
 - `docker-compose up -d`
-- Se tudo ocorrer dentro da normalidade, rode no terminal `http://localhost:3000`
+- Se tudo ocorrer dentro da normalidade, rode no terminal `http://localhost:3000` </br>
 Tela de login:
 <img src="image/tela-login.png" alt="image-login"/>
 Tela de partidas:
