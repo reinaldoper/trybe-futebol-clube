@@ -16,6 +16,10 @@ Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua cr
 ## Para rodar a aplicação:
 - `git clone git@github.com:reinaldoper/trybe-futebol-clube.git`
 ## Baixar as dependências:
+- Dentro da pasta `raiz do projeto`
+- `npm install`
 - Dentro da pasta `app`
-- npm install`
+- `docker-compose up -d`
+- Se tudo ocorrer dentro da normalidade, rode no terminal `http://localhost:3000`
+## Tela de partidas:
 
