@@ -15,4 +15,7 @@ Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua cr
 - `Projeto do módulo de back-end, onde a Trybe disponibiliza o Front-end já pronto, bastando ao estudante desenvolver apenas o back-end`
 ## Para rodar a aplicação:
 - `git clone git@github.com:reinaldoper/trybe-futebol-clube.git`
+## Baixar as dependências:
+- Dentro da pasta `app`
+- npm install`
 
