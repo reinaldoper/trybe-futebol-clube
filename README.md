@@ -11,3 +11,5 @@ Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua cr
 - quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
 - quais arquivos/pastas foram desenvolvidos pela Trybe.
 -->
+## Projeto Trybe futebol clube
+- `Projeto do módulo de back-end, onde a Trybe disponibiliza o Front-end já pronto, bastando ao estudante desenvolver apenas o back-end
