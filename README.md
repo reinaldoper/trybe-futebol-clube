@@ -24,7 +24,7 @@ Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua cr
 ## Tela de login:
 <img src="image/tela-login.png" alt="image-login"/>
 ## Tela de partidas:
-<img src="image/tela-partidas.png" alt="image-login"/>
+<img src="image/tela-paridas.png" alt="image-login"/>
 ## Tela de classificação:
 <img src="image/tela-classificacao.png" alt="image-login"/>
 
