@@ -22,5 +22,5 @@ Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua cr
 - `docker-compose up -d`
 - Se tudo ocorrer dentro da normalidade, rode no terminal `http://localhost:3000`
 ## Tela de login:
-<img src="trybe-futebol-clube/image/tela-login.png" alt="image-login"/>
+<img src="image/tela-login.png" alt="image-login"/>
 
