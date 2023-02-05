@@ -21,10 +21,10 @@ Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua cr
 - Dentro da pasta `app`
 - `docker-compose up -d`
 - Se tudo ocorrer dentro da normalidade, rode no terminal `http://localhost:3000`
-- Tela de login:
+Tela de login:
 <img src="image/tela-login.png" alt="image-login"/>
-- Tela de partidas:
+Tela de partidas:
 <img src="image/tela-paridas.png" alt="image-login"/>
-- Tela de classificação:
+Tela de classificação:
 <img src="image/tela-classificacao.png" alt="image-login"/>
 
