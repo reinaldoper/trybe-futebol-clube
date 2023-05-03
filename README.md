@@ -13,9 +13,9 @@ Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua cr
 -->
 ## Projeto REALIZADO enquanto estudante da TRYBE:
 - `Projeto do módulo de back-end, onde a Trybe disponibiliza o Front-end e o docker compose já pronto, bastando ao estudante desenvolver apenas o back-end`
-## Para rodar a aplicação:
+# 📁 Acesso ao projeto
 - `git clone git@github.com:reinaldoper/trybe-futebol-clube.git`
-## Baixar as dependências:
+# 🛠️ Abrir e rodar o projeto
 - Dentro da pasta `raiz do projeto`
 - `npm install`
 - Dentro da pasta `app`
